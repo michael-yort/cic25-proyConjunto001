@@ -1,6 +1,7 @@
 package es.cic25.proyectoconjunto.proyectoConjunto.controller;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,7 +17,6 @@ import es.cic25.proyectoconjunto.proyectoConjunto.Categoria;
 import es.cic25.proyectoconjunto.proyectoConjunto.model.Habito;
 import es.cic25.proyectoconjunto.proyectoConjunto.service.HabitoService;
 
-
 @RestController
 @RequestMapping("/habito")
 public class HabitoController {
@@ -24,38 +24,29 @@ public class HabitoController {
     private HabitoService habitoService;
 
     @GetMapping("/{id}")
-    public Habito get(@PathVariable long id){
-        Habito habito1 = new Habito();
+    public Optional<Habito> get(@PathVariable long id) {
 
-        habito1.setId(id);
-        habito1.setNombre("Nuevo hábito");
-        habito1.setDescripcion("Descripción de mi nuevo hábito");
-        habito1.setFechaInicio(LocalDate.now());
-        habito1.setEstado(true);
+        Optional<Habito> habito = habitoService.get(id);
 
-        habito1.setId(id);
+        return habito;
 
-        habito1.setCategoria(Categoria.CREATIVIDAD);
-
-        return habito1;
     }
 
     @PostMapping
-    public Habito create(@RequestBody Habito habito){
+    public Habito create(@RequestBody Habito habito) {
 
         habito = habitoService.create(habito);
-        
 
         return habito;
     }
 
     @PutMapping
-    public void update(@RequestBody Habito habito){
-        throw new UnsupportedOperationException();
+    public void update(@RequestBody Habito habito) {
+
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable long id){
+    public void delete(@PathVariable long id) {
         throw new UnsupportedOperationException();
     }
 }

@@ -29,7 +29,6 @@ public class Habito {
     public Date[] fechasCompletadas;
 
     
-    
     //Getter y setter
 
     public String getNombre() {
