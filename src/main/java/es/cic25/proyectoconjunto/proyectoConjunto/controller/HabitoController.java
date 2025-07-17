@@ -33,7 +33,6 @@ public class HabitoController {
         habito1.setFechaInicio(LocalDate.now());
         habito1.setEstado(true);
 
-
         habito1.setId(id);
 
         habito1.setCategoria(Categoria.CREATIVIDAD);
@@ -42,9 +41,12 @@ public class HabitoController {
     }
 
     @PostMapping
-    public long create(@RequestBody Habito habito){
-        long id = habitoService.create(habito);
-        return id;
+    public Habito create(@RequestBody Habito habito){
+
+        habito = habitoService.create(habito);
+        
+
+        return habito;
     }
 
     @PutMapping
