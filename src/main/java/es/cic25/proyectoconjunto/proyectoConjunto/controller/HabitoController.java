@@ -47,6 +47,8 @@ public class HabitoController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id) {
-        throw new UnsupportedOperationException();
+
+        habitoService.delete(id);
+
     }
 }

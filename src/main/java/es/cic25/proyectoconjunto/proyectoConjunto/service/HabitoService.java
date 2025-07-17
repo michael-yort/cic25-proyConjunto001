@@ -18,9 +18,9 @@ public class HabitoService {
 
     public Optional<Habito> get(long id) {
 
-       Optional<Habito> habito = Optional.ofNullable(iHabitoRepository.findById(id).orElse(null));
+        Optional<Habito> habito = Optional.ofNullable(iHabitoRepository.findById(id).orElse(null));
 
-       return habito;
+        return habito;
     }
 
     public Habito create(Habito habito) {
@@ -28,6 +28,12 @@ public class HabitoService {
         iHabitoRepository.save(habito);
 
         return habito;
+
+    }
+
+    public void delete(long id) {
+        
+        iHabitoRepository.deleteById(id);
 
     }
 

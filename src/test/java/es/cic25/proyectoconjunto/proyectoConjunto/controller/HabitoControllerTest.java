@@ -33,10 +33,7 @@ public class HabitoControllerTest {
         assertEquals(nombreHabito, habito2.getNombre());
     }
 
-    @Test
-    void testDelete() {
-
-    }
+    
 
    
 

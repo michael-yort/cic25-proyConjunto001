@@ -13,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -75,6 +76,36 @@ public class HabitoControllerIntegrationTest {
         Optional<Habito> habito2 = habitoController.get(1);
 
         assertEquals(habito.getNombre(), habito2.get().getNombre());
+
+    }
+
+    @Test
+    void testDelete() throws Exception {
+
+        Habito habito = new Habito();
+        habito.setNombre("Meditar");
+        habito.setDescripcion("Meditar cada mañana");
+        habito.setEstado(true);
+        habito.setCategoria(Categoria.SALUD);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String habitoJson = objectMapper.writeValueAsString(habito);
+
+        mockMvc.perform(post("/habito")
+                .contentType("application/json")
+                .content(habitoJson))
+                .andExpect(status().isOk());
+
+        mockMvc.perform(get("/habito/1"))
+                .andExpect(status().isOk());
+
+        mockMvc.perform(delete("/habito/1"))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        Optional<Habito> habito2 = habitoController.get(1);
+
+        assertEquals(Optional.empty(), habito2);
 
     }
 }
