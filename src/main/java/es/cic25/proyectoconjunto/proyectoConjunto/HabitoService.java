@@ -2,7 +2,6 @@ package es.cic25.proyectoconjunto.proyectoConjunto;
 
 import org.springframework.stereotype.Service;
 
-import es.cic.curso25.proy006.Model.Habito;
 
 @Service
 public class HabitoService {
