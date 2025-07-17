@@ -1,6 +1,8 @@
-package es.cic25.proyectoconjunto.proyectoConjunto;
+package es.cic25.proyectoconjunto.proyectoConjunto.service;
 
 import org.springframework.stereotype.Service;
+
+import es.cic25.proyectoconjunto.proyectoConjunto.model.Habito;
 
 
 @Service

@@ -1,4 +1,4 @@
-package es.cic25.proyectoconjunto.proyectoConjunto;
+package es.cic25.proyectoconjunto.proyectoConjunto.controller;
 
 import java.time.LocalDate;
 
@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import es.cic25.proyectoconjunto.proyectoConjunto.Categoria;
+import es.cic25.proyectoconjunto.proyectoConjunto.model.Habito;
+import es.cic25.proyectoconjunto.proyectoConjunto.service.HabitoService;
 
 
 @RestController

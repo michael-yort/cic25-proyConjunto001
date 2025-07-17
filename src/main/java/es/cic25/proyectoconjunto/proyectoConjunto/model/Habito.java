@@ -1,8 +1,15 @@
-package es.cic25.proyectoconjunto.proyectoConjunto;
+package es.cic25.proyectoconjunto.proyectoConjunto.model;
 
 import java.sql.Date;
 import java.time.LocalDate;
 
+import es.cic25.proyectoconjunto.proyectoConjunto.Categoria;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Habito {
 
     // ATRIBUTOS
@@ -10,6 +17,9 @@ public class Habito {
     public String descripcion;
     public LocalDate fechaInicio;
     public boolean estado;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public long id;
 
     public Categoria categoria;
