@@ -12,10 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import es.cic.curso25.proy006.Model.Habito;
-import es.cic.curso25.proy006.Model.Categoria;
-import es.cic.curso25.proy006.Service.HabitoService;
-
 @RestController
 @RequestMapping("/habito")
 public class HabitoController {
