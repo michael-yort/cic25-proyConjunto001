@@ -1,6 +1,7 @@
 package es.cic25.proyectoconjunto.proyectoConjunto.controller;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import es.cic25.proyectoconjunto.proyectoConjunto.Categoria;
+import es.cic25.proyectoconjunto.proyectoConjunto.model.Categoria;
 import es.cic25.proyectoconjunto.proyectoConjunto.model.Habito;
 import es.cic25.proyectoconjunto.proyectoConjunto.service.HabitoService;
 
@@ -31,6 +32,13 @@ public class HabitoController {
         return habito;
 
     }
+
+    @GetMapping
+    public List<Habito> get() {
+
+        return habitoService.get();
+
+    }    
 
     @PostMapping
     public Habito create(@RequestBody Habito habito) {

@@ -1,31 +1,37 @@
 package es.cic25.proyectoconjunto.proyectoConjunto.service;
 
+import java.util.List;
 import java.util.Optional;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.cic25.proyectoconjunto.proyectoConjunto.model.Habito;
-import es.cic25.proyectoconjunto.proyectoConjunto.repository.IHabitoRepository;
+import es.cic25.proyectoconjunto.proyectoConjunto.repository.HabitoRepository;
 
 @Service
 public class HabitoService {
 
-    @Autowired
-    private IHabitoRepository iHabitoRepository;
+    private static final Logger LOGGER = LoggerFactory.getLogger(HabitoService.class);
 
-    private long contador;
+    @Autowired
+    private HabitoRepository habitoRepository;
 
     public Optional<Habito> get(long id) {
-
-        Optional<Habito> habito = Optional.ofNullable(iHabitoRepository.findById(id).orElse(null));
+        LOGGER.info("Leo el habito " + id);
+        Optional<Habito> habito = habitoRepository.findById(id);
 
         return habito;
     }
 
+    public List<Habito> get() {
+        return habitoRepository.findAll();
+    }
+
     public Habito create(Habito habito) {
 
-        iHabitoRepository.save(habito);
+        habitoRepository.save(habito);
 
         return habito;
 
@@ -33,20 +39,15 @@ public class HabitoService {
 
     public void delete(long id) {
         
-        iHabitoRepository.deleteById(id);
+        habitoRepository.deleteById(id);
 
     }
 
     public Habito update(Habito habito) {
 
-        iHabitoRepository.save(habito);
+        habitoRepository.save(habito);
 
         return habito;
 
     }
-
-    public long getContador() {
-        return this.contador;
-    }
-
 }

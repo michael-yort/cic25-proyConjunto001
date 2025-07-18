@@ -3,7 +3,6 @@ package es.cic25.proyectoconjunto.proyectoConjunto.model;
 import java.sql.Date;
 import java.time.LocalDate;
 
-import es.cic25.proyectoconjunto.proyectoConjunto.Categoria;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,15 +11,17 @@ import jakarta.persistence.Id;
 @Entity
 public class Habito {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+
     // ATRIBUTOS
     public String nombre;
     public String descripcion;
     public LocalDate fechaInicio;
     public boolean estado;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public long id;
 
     public Categoria categoria;
 
@@ -94,5 +95,32 @@ public class Habito {
     public void setFechasCompletadas(Date[] fechasCompletadas) {
         this.fechasCompletadas = fechasCompletadas;
     }
-   
+
+    @Override
+    public String toString() {
+        return "Habito [id=" + id + ", nombre=" + nombre + ", fechaInicio=" + fechaInicio + ", estado=" + estado
+                + ", categoria=" + categoria + "]";
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + (int) (id ^ (id >>> 32));
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Habito other = (Habito) obj;
+        if (id != other.getId())
+            return false;
+        return true;
+    }
 }
