@@ -31,13 +31,24 @@ public class HabitoServiceIntegrationTest {
         assertEquals(nombreHabito, habito2.getNombre());
     }
 
-    
-
-   
-
     @Test
     void testUpdate() {
+        // 1. Creo un hábito inicial
+        Habito habito = new Habito();
+        habito.setNombre("Hábito original");
+        Habito habitoCreadoEnRepo = habitoService.create(habito);
 
+        // 2. Modifico el nombre del hábito
+        habitoCreadoEnRepo.setNombre("Hábito actualizado");
+
+        // 3. Actualizo en la base de datos
+        Habito habitoActualizado = habitoService.update(habitoCreadoEnRepo);
+
+        // 4. Recupero desde el repositorio para confirmar cambio
+        Optional<Habito> recuperado = habitoService.get(habitoActualizado.getId());
+
+        // 5. Verifico que el cambio se guardó correctamente
+        assertEquals("Hábito actualizado", recuperado.get().getNombre());
     }
 
 }

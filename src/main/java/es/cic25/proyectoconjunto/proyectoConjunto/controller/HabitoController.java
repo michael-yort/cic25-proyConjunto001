@@ -38,7 +38,7 @@ public class HabitoController {
 
         return habitoService.get();
 
-    }    
+    }
 
     @PostMapping
     public Habito create(@RequestBody Habito habito) {
@@ -48,9 +48,10 @@ public class HabitoController {
         return habito;
     }
 
-    @PutMapping
-    public void update(@RequestBody Habito habito) {
-
+    @PutMapping("/{id}")
+    public Habito update(@PathVariable long id, @RequestBody Habito habito) {
+        habito.setId(id); // asegura que el objeto tenga el ID correcto
+        return habitoService.update(habito);
     }
 
     @DeleteMapping("/{id}")
