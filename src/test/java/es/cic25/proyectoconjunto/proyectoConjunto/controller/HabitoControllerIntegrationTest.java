@@ -69,6 +69,38 @@ public class HabitoControllerIntegrationTest {
 
         }
 
+
+        //NO ESTA COMPLETOP MIRARLO DE EL VIDEO DE CLASE.
+        @Test
+        void testCreateIntentandoModificacion() throws Exception {
+
+                Habito habito = new Habito();
+                habito.setId(3);
+                habito.setNombre("Meditar");
+                habito.setDescripcion("Meditar cada mañana");
+                habito.setEstado(true);
+                habito.setCategoria(Categoria.SALUD);
+
+                // ObjectMapper objectMapper = new ObjectMapper();
+                String habitoJson = objectMapper.writeValueAsString(habito);
+
+                mockMvc.perform(post("/habito")
+                                .contentType("application/json")
+                                .content(habitoJson))
+                                .andExpect(status().isOk())
+                                .andExpect(result -> {
+                                        String respuesta = result.getResponse().getContentAsString();
+                                        Habito registroCreado = objectMapper.readValue(respuesta, Habito.class);
+                                        assertTrue(registroCreado.getId() > 0, "El valor debe ser mayor que 0");
+
+                                        Optional<Habito> registroRealmenteCreado = habitoRespository
+                                                        .findById(registroCreado.getId());
+                                        assertTrue(registroRealmenteCreado.isPresent());
+
+                                });
+
+        }
+
         @Test
         void testGet() throws Exception {
 

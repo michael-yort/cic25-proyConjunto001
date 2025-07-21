@@ -43,6 +43,11 @@ public class HabitoController {
     @PostMapping
     public Habito create(@RequestBody Habito habito) {
 
+        if (habito.getId() != 0) {
+
+            throw new ModificacionSecurityException("Has tratado de modificar mediante creacion");
+        }
+
         habito = habitoService.create(habito);
 
         return habito;
